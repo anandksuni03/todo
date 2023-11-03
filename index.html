@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-b from-green-400 to-yellow-700 bg-black-200 min-h-screen flex flex-col justify-center items-center">
+
+    <div class="max-w-md w-full bg-white shadow-md p-6 rounded-md">
+        <h1 class="text-2xl font-semibold mb-4">To-Do List</h1>
+        <div class="flex mb-4">
+            <input type="text" id="taskInput" placeholder="Add a new task" class="flex-1 p-2 border rounded-l-md">
+            <button onclick="addTask()" class="px-4 py-2 bg-blue-500 text-white rounded-r-md">Add</button>
+        </div>
+        <ul id="taskList" class="list-decimal pl-4">
+
+        </ul>
+    </div>
+
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskList = document.getElementById('taskList');
+            const taskText = taskInput.value.trim();
+            
+            if (taskText === '') {
+                return; 
+            }
+            
+            const listItem = document.createElement('li');
+            listItem.textContent = taskText;
+
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.className = 'ml-2 px-2 py-1 bg-red-500 text-white rounded';
+            removeButton.addEventListener('click', function () {
+                listItem.remove();
+            });
+
+            listItem.appendChild(removeButton);
+
+            taskList.appendChild(listItem);
+
+            taskInput.value = '';
+        }
+    </script>
+</body>
+</html>
